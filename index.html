@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yanin Duangdee - Academic Portfolio | แฟ้มสะสมผลงาน</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        vintage: {
+                            rose: '#e78895',
+                            rosedark: '#be5a67',
+                            softpink: '#ffe5ec',
+                            cream: '#fdfbf7',
+                            paper: '#f9f6f0',
+                            sage: '#84a59d',
+                            sagedark: '#57756e',
+                            gold: '#d4a373',
+                            charcoal: '#3d405b',
+                            border: '#ecd7d0'
+                        }
+                    },
+                    fontFamily: {
+                        heading: ['Mitr', 'sans-serif'],
+                        body: ['Prompt', 'sans-serif'],
+                        serif: ['Sarabun', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mitr:wght@300;400;500;600&family=Prompt:ital,wght@0,300;0,400;0,500;0,600;1,300&family=Sarabun:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Prompt', sans-serif;
+            background-color: #f8f4ef;
+            color: #3d405b;
+        }
+        .font-heading { font-family: 'Mitr', sans-serif; }
+        .font-serif-thai { font-family: 'Sarabun', serif; }
+
+        /* Vintage Paper & Dots Texture */
+        .bg-vintage-pattern {
+            background-color: #fdfbf7;
+            background-image: radial-gradient(#e78895 0.75px, transparent 0.75px), radial-gradient(#84a59d 0.75px, #fdfbf7 0.75px);
+            background-size: 24px 24px;
+            background-position: 0 0, 12px 12px;
+        }
+
+        .vintage-card {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(8px);
+            border: 2px solid #ecd7d0;
+            box-shadow: 0 10px 25px -5px rgba(231, 136, 149, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.03);
+        }
+
+        .stamp-badge {
+            border: 2px dashed #e78895;
+            background-color: #ffe5ec;
+        }
+
+        .ribbon-tag {
+            clip-path: polygon(0% 0%, 90% 0%, 100% 50%, 90% 100%, 0% 100%);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #fdfbf7;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #e78895;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #be5a67;
+        }
+
+        /* Print Adjustments */
+        @media print {
+            .no-print { display: none !important; }
+            body { background: white !important; color: black !important; }
+            .vintage-card { background: white !important; border: 1px solid #ddd !important; box-shadow: none !important; }
+        }
+    </style>
+</head>
+<body class="bg-vintage-pattern min-h-screen flex flex-col justify-between selection:bg-vintage-softpink selection:text-vintage-rosedark">
+
+    <nav class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b-2 border-vintage-border shadow-sm transition-all duration-300 no-print">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <a href="#hero" class="flex items-center space-x-2 text-vintage-rosedark hover:opacity-80 transition">
+                    <span class="bg-vintage-softpink p-2 rounded-2xl text-vintage-rose shadow-inner border border-vintage-rose/30">
+                        <i class="fa-solid fa-book-bookmark text-lg"></i>
+                    </span>
+                    <span class="font-heading font-medium text-lg md:text-xl tracking-wide text-vintage-charcoal">Yanin.Portfolio</span>
+                </a>
+
+                <!-- Desktop Nav Links -->
+                <div class="hidden md:flex space-x-1 items-center">
+                    <a href="#hero" class="px-3 py-1.5 text-xs font-medium text-slate-700 hover:text-vintage-rosedark hover:bg-vintage-softpink rounded-xl transition">หน้าแรก</a>
+                    <a href="#profile" class="px-3 py-1.5 text-xs font-medium text-slate-700 hover:text-vintage-rosedark hover:bg-vintage-softpink rounded-xl transition">ประวัติส่วนตัว</a>
+                    <a href="#education" class="px-3 py-1.5 text-xs font-medium text-slate-700 hover:text-vintage-rosedark hover:bg-vintage-softpink rounded-xl transition">ประวัติการศึกษา</a>
+                    <a href="#transcript" class="px-3 py-1.5 text-xs font-medium text-slate-700 hover:text-vintage-rosedark hover:bg-vintage-softpink rounded-xl transition">ผลการเรียน (ปพ.1)</a>
+                    <a href="#activities" class="px-3 py-1.5 text-xs font-medium text-slate-700 hover:text-vintage-rosedark hover:bg-vintage-softpink rounded-xl transition">กิจกรรม & ผลงาน</a>
+                    
+                    <button onclick="openGithubModal()" class="ml-2 bg-vintage-charcoal text-white hover:bg-slate-900 px-3.5 py-1.5 rounded-xl text-xs font-medium shadow transition flex items-center gap-1.5">
+                        <i class="fa-brands fa-github text-sm"></i> คู่มือ GitHub Pages
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="p-2 text-slate-600 hover:text-vintage-rose rounded-lg focus:outline-none">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Nav Menu -->
+        <div id="mobile-menu" class="hidden md:hidden px-4 pt-2 pb-4 bg-white/95 border-b border-vintage-border shadow-lg">
+            <div class="flex flex-col space-y-2 text-center">
+                <a href="#hero" class="mobile-link py-2 text-sm font-medium text-slate-700 hover:bg-vintage-softpink rounded-lg">หน้าแรก</a>
+                <a href="#profile" class="mobile-link py-2 text-sm font-medium text-slate-700 hover:bg-vintage-softpink rounded-lg">ประวัติส่วนตัว</a>
+                <a href="#education" class="mobile-link py-2 text-sm font-medium text-slate-700 hover:bg-vintage-softpink rounded-lg">ประวัติการศึกษา</a>
+                <a href="#transcript" class="mobile-link py-2 text-sm font-medium text-slate-700 hover:bg-vintage-softpink rounded-lg">ผลการเรียน (ปพ.1)</a>
+                <a href="#activities" class="mobile-link py-2 text-sm font-medium text-slate-700 hover:bg-vintage-softpink rounded-lg">กิจกรรม & ผลงาน</a>
+                <button onclick="openGithubModal()" class="w-full bg-vintage-charcoal text-white py-2 rounded-xl text-xs font-medium shadow mt-2">
+                    <i class="fa-brands fa-github mr-1"></i> คู่มือ GitHub Pages
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+
+        <!-- Hero Section -->
+        <section id="hero" class="pt-2">
+            <div class="vintage-card rounded-3xl p-6 sm:p-10 relative overflow-hidden">
+                <!-- Cute Aesthetic Background Accents -->
+                <div class="absolute -top-10 -right-10 w-40 h-40 bg-vintage-softpink rounded-full opacity-60 blur-xl pointer-events-none"></div>
+                <div class="absolute -bottom-10 -left-10 w-44 h-44 bg-vintage-sage/20 rounded-full opacity-60 blur-xl pointer-events-none"></div>
+
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+                    <!-- Photo Stamp Frame -->
+                    <div class="md:col-span-5 flex flex-col items-center">
+                        <div class="relative group">
+                            <div class="w-60 h-72 sm:w-64 sm:h-80 rounded-2xl bg-gradient-to-b from-vintage-softpink via-vintage-paper to-white p-3 shadow-md border-2 border-vintage-border relative">
+                                
+                                <!-- Decorative Paper Tape / Stamp Accent -->
+                                <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-vintage-gold/80 text-white text-[10px] px-6 py-0.5 rounded shadow-sm font-heading font-medium tracking-widest z-10 uppercase">
+                                    ACADEMIC PORTFOLIO
+                                </div>
+
+                                <div class="w-full h-full bg-slate-100 rounded-xl overflow-hidden relative border border-vintage-border flex items-center justify-center">
+                                    <img src="https://placehold.co/400x500/ffe5ec/be5a67?text=Yanin+Duangdee" alt="นางสาวญาณินท์ ดวงดี" class="w-full h-full object-cover">
+                                    <div class="absolute bottom-2 right-2 bg-white/95 px-2.5 py-1 rounded-lg border border-vintage-border text-[11px] font-semibold text-vintage-charcoal shadow-sm">
+                                        ✨ สายวิทย์-คณิต
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Cute Floating Motto Badge -->
+                            <div class="absolute -bottom-4 -right-2 bg-white p-3 rounded-2xl shadow-lg border border-vintage-border flex items-center space-x-2 animate-bounce">
+                                <span class="text-xl">💡</span>
+                                <div>
+                                    <p class="text-[10px] text-slate-400 font-semibold uppercase">Motto</p>
+                                    <p class="text-xs font-bold text-vintage-rosedark">"ช้าแต่มั่นใจ ดีกว่าไม่รู้เลย"</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Intro Info -->
+                    <div class="md:col-span-7 space-y-4 text-center md:text-left">
+                        <div class="inline-flex items-center space-x-2 bg-vintage-softpink text-vintage-rosedark px-3 py-1 rounded-full text-xs font-medium border border-vintage-rose/30">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                            <span>แฟ้มสะสมผลงานทางการศึกษา</span>
+                        </div>
+
+                        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-heading font-semibold text-vintage-charcoal leading-tight">
+                            นางสาวญาณินท์ ดวงดี
+                        </h1>
+                        <p class="text-lg font-heading text-vintage-rose font-medium -mt-2">
+                            ชื่อเล่น: แอฟ (Aef)
+                        </p>
+
+                        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed font-serif-thai">
+                            นักเรียนชั้นมัธยมศึกษาปีที่ 6 แผนการเรียนวิทยาศาสตร์ - 수학 (คณิตศาสตร์) <br>
+                            <span class="font-semibold text-slate-800">โรงเรียนธาตุนารายณ์วิทยา</span> อำเภอเมืองสกลนคร จังหวัดสกลนคร
+                        </p>
+
+                        <!-- Highlights Box -->
+                        <div class="grid grid-cols-3 gap-3 pt-2 text-center">
+                            <div class="bg-white p-3 rounded-2xl border border-vintage-border shadow-sm">
+                                <span class="block text-xl font-heading font-bold text-vintage-rosedark">3.19</span>
+                                <span class="text-[11px] text-slate-500">GPAX (5 เทอม)</span>
+                            </div>
+                            <div class="bg-white p-3 rounded-2xl border border-vintage-border shadow-sm">
+                                <span class="block text-xl font-heading font-bold text-vintage-sagedark">67.0</span>
+                                <span class="text-[11px] text-slate-500">หน่วยกิตสะสม</span>
+                            </div>
+                            <div class="bg-white p-3 rounded-2xl border border-vintage-border shadow-sm">
+                                <span class="block text-xl font-heading font-bold text-vintage-gold">17 ปี</span>
+                                <span class="text-[11px] text-slate-500">อายุ</span>
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="pt-2 flex flex-wrap gap-2 justify-center md:justify-start no-print">
+                            <a href="#profile" class="bg-vintage-rose hover:bg-vintage-rosedark text-white px-5 py-2 rounded-xl text-xs sm:text-sm font-medium shadow-sm transition flex items-center gap-2">
+                                <i class="fa-solid fa-user"></i> ดูประวัติส่วนตัว
+                            </a>
+                            <button onclick="window.print()" class="bg-white hover:bg-vintage-softpink text-vintage-charcoal px-4 py-2 rounded-xl text-xs sm:text-sm font-medium border border-vintage-border shadow-sm transition flex items-center gap-2">
+                                <i class="fa-solid fa-print text-vintage-rosedark"></i> พิมพ์ / พิมพ์เป็น PDF
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="profile" class="scroll-mt-20">
+            <div class="text-center mb-8">
+                <span class="text-xs font-semibold text-vintage-rosedark uppercase tracking-widest bg-vintage-softpink px-3 py-1 rounded-full border border-vintage-rose/20">Profile & Family</span>
+                <h2 class="text-2xl sm:text-3xl font-heading font-semibold text-vintage-charcoal mt-2">ประวัติส่วนตัว & ข้อมูลครอบครัว</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Profile Card -->
+                <div class="vintage-card rounded-3xl p-6 space-y-4">
+                    <div class="flex items-center space-x-3 text-vintage-rosedark border-b border-vintage-border pb-3">
+                        <i class="fa-solid fa-id-card text-2xl"></i>
+                        <h3 class="font-heading font-semibold text-lg text-vintage-charcoal">ข้อมูลส่วนตัว (Personal Info)</h3>
+                    </div>
+
+                    <ul class="space-y-2.5 text-xs sm:text-sm text-slate-700">
+                        <li class="flex justify-between border-b border-dashed border-slate-200 pb-1.5">
+                            <span class="text-slate-500"><i class="fa-solid fa-user w-5 text-vintage-rose"></i> ชื่อ-สกุล:</span>
+                            <span class="font-medium text-slate-800">นางสาวญาณินท์ ดวงดี (แอฟ)</span>
+                        </li>
+                        <li class="flex justify-between border-b border-dashed border-slate-200 pb-1.5">
+                            <span class="text-slate-500"><i class="fa-solid fa-cake-candles w-5 text-vintage-rose"></i> วันเกิด:</span>
+                            <span class="font-medium text-slate-800">21 มีนาคม 2551 (อายุ 17 ปี)</span>
+                        </li>
+                        <li class="flex justify-between border-b border-dashed border-slate-200 pb-1.5">
+                            <span class="text-slate-500"><i class="fa-solid fa-flag w-5 text-vintage-rose"></i> สัญชาติ / เชื้อชาติ / ศาสนา:</span>
+                            <span class="font-medium text-slate-800">ไทย / ไทย / พุทธ</span>
+                        </li>
+                        <li class="flex justify-between border-b border-dashed border-slate-200 pb-1.5">
+                            <span class="text-slate-500"><i class="fa-solid fa-weight-scale w-5 text-vintage-rose"></i> น้ำหนัก / ส่วนสูง / กรุ๊ปเลือด:</span>
+                            <span class="font-medium text-slate-800">60 กก. / 170 ซม. / กรุ๊ป O</span>
+                        </li>
+                        <li class="flex justify-between border-b border-dashed border-slate-200 pb-1.5">
+                            <span class="text-slate-500"><i class="fa-solid fa-medal w-5 text-vintage-rose"></i> ความสามารถพิเศษ:</span>
+                            <span class="font-medium text-slate-800">เล่นแบดมินตัน</span>
+                        </li>
+                        <li class="flex justify-between border-b border-dashed border-slate-200 pb-1.5">
+                            <span class="text-slate-500"><i class="fa-solid fa-heart w-5 text-vintage-rose"></i> งานอดิเรก:</span>
+                            <span class="font-medium text-slate-800">เล่นเกม, ฟังเพลง, ดูซีรีย์</span>
+                        </li>
+                        <li class="flex justify-between pb-1">
+                            <span class="text-slate-500"><i class="fa-solid fa-smile w-5 text-vintage-rose"></i> อุปนิสัยส่วนตัว:</span>
+                            <span class="font-medium text-slate-800 text-right max-w-[200px]">เป็นคนร่าเริง ยิ้มแย้มแจ่มใส เข้ากับคนอื่นง่าย ชอบแคร์ความรู้สึกคนรอบข้าง</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Family & Address Card -->
+                <div class="space-y-6">
+                    <!-- Family Info -->
+                    <div class="vintage-card rounded-3xl p-6 space-y-3">
+                        <div class="flex items-center space-x-3 text-vintage-sagedark border-b border-vintage-border pb-3">
+                            <i class="fa-solid fa-house-chimney-user text-2xl"></i>
+                            <h3 class="font-heading font-semibold text-lg text-vintage-charcoal">ข้อมูลครอบครัว & ที่อยู่</h3>
+                        </div>
+                        <ul class="space-y-2 text-xs sm:text-sm text-slate-700">
+                            <li><span class="text-slate-500">บิดา:</span> <span class="font-medium text-slate-800">นายบุญส่ง ดวงดี</span></li>
+                            <li><span class="text-slate-500">มารดา:</span> <span class="font-medium text-slate-800">นางรัตนาภรณ์ พรหมหากุล</span> (ทำงานบริษัทแพนดอร่า)</li>
+                            <li><span class="text-slate-500">โทรศัพท์ผู้ปกครอง:</span> <span class="font-medium text-slate-800">062-314-0658</span></li>
+                            <li class="pt-2 border-t border-dashed border-slate-200">
+                                <span class="text-slate-500 block mb-1"><i class="fa-solid fa-location-dot text-vintage-rose mr-1"></i> ที่อยู่ปัจจุบัน:</span>
+                                <p class="font-medium text-slate-800 bg-white p-2.5 rounded-xl border border-vintage-border text-xs">
+                                    บ้านเลขที่ 2 หมู่ 8 ตำบลขมิ้น อำเภอเมือง จังหวัดสกลนคร 47220
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Contact Card -->
+                    <div class="vintage-card rounded-3xl p-6 space-y-3">
+                        <div class="flex items-center space-x-3 text-vintage-rosedark border-b border-vintage-border pb-3">
+                            <i class="fa-solid fa-address-book text-2xl"></i>
+                            <h3 class="font-heading font-semibold text-lg text-vintage-charcoal">ช่องทางการติดต่อ</h3>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 text-xs">
+                            <a href="tel:0655502036" class="flex items-center space-x-2 p-2 rounded-xl bg-pink-50 hover:bg-pink-100 text-vintage-rosedark transition border border-pink-100">
+                                <i class="fa-solid fa-phone text-vintage-rose"></i>
+                                <span>065-550-2036</span>
+                            </a>
+                            <a href="#" class="flex items-center space-x-2 p-2 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-800 transition border border-emerald-100">
+                                <i class="fa-brands fa-line text-emerald-600"></i>
+                                <span>yaninduangdee</span>
+                            </a>
+                            <a href="#" class="flex items-center space-x-2 p-2 rounded-xl bg-blue-50 hover:bg-blue-100 text-blue-800 transition border border-blue-100">
+                                <i class="fa-brands fa-facebook text-blue-600"></i>
+                                <span>Yanin Duangdee</span>
+                            </a>
+                            <a href="#" class="flex items-center space-x-2 p-2 rounded-xl bg-purple-50 hover:bg-purple-100 text-purple-800 transition border border-purple-100">
+                                <i class="fa-brands fa-instagram text-purple-600"></i>
+                                <span>_yxqnixn</span>
+                            </a>
+                        </div>
+                        <p class="text-xs text-slate-500 text-center pt-2 border-t border-slate-100">
+                            <i class="fa-solid fa-envelope mr-1 text-vintage-rose"></i> yanindwngdi190@gmail.com
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="education" class="scroll-mt-20">
+            <div class="text-center mb-8">
+                <span class="text-xs font-semibold text-vintage-rosedark uppercase tracking-widest bg-vintage-softpink px-3 py-1 rounded-full border border-vintage-rose/20">Educational History</span>
+                <h2 class="text-2xl sm:text-3xl font-heading font-semibold text-vintage-charcoal mt-2">ประวัติการศึกษา (EDUCATION)</h2>
+            </div>
+
+            <div class="relative border-l-2 border-vintage-rose/40 ml-4 md:ml-32 space-y-8">
+                <!-- Primary -->
+                <div class="relative pl-6 sm:pl-8">
+                    <div class="absolute -left-[9px] top-2 w-4 h-4 rounded-full bg-vintage-rose border-4 border-white shadow"></div>
+                    <div class="vintage-card rounded-2xl p-5 hover:shadow-md transition">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between">
+                            <div>
+                                <span class="text-xs font-semibold text-vintage-rosedark bg-vintage-softpink px-2.5 py-0.5 rounded-full">ระดับประถมศึกษา (ป.1-6)</span>
+                                <h3 class="text-base sm:text-lg font-heading font-semibold text-vintage-charcoal mt-1">โรงเรียนบ้านพานสหราษฎร์บำรุง</h3>
+                            </div>
+                            <div class="mt-2 sm:mt-0 bg-white px-3 py-1.5 rounded-xl border border-vintage-border text-left sm:text-right">
+                                <span class="text-[11px] text-slate-500 block">ผลการเรียนเฉลี่ย</span>
+                                <span class="text-base font-bold text-vintage-rosedark">GPAX 3.68</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lower Sec -->
+                <div class="relative pl-6 sm:pl-8">
+                    <div class="absolute -left-[9px] top-2 w-4 h-4 rounded-full bg-vintage-sagedark border-4 border-white shadow"></div>
+                    <div class="vintage-card rounded-2xl p-5 hover:shadow-md transition">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between">
+                            <div>
+                                <span class="text-xs font-semibold text-vintage-sagedark bg-emerald-50 px-2.5 py-0.5 rounded-full">ระดับมัธยมศึกษาตอนต้น (ม.1-3)</span>
+                                <h3 class="text-base sm:text-lg font-heading font-semibold text-vintage-charcoal mt-1">โรงเรียนธาตุนารายณ์วิทยา</h3>
+                            </div>
+                            <div class="mt-2 sm:mt-0 bg-white px-3 py-1.5 rounded-xl border border-vintage-border text-left sm:text-right">
+                                <span class="text-[11px] text-slate-500 block">ผลการเรียนเฉลี่ย</span>
+                                <span class="text-base font-bold text-vintage-sagedark">GPAX 3.82</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Upper Sec -->
+                <div class="relative pl-6 sm:pl-8">
+                    <div class="absolute -left-[11px] top-2 w-5 h-5 rounded-full bg-vintage-rosedark border-4 border-white shadow ring-2 ring-vintage-softpink"></div>
+                    <div class="vintage-card rounded-2xl p-6 border-2 border-vintage-rose/50 bg-gradient-to-r from-white via-vintage-paper to-vintage-softpink/20">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-vintage-border pb-3">
+                            <div>
+                                <span class="text-xs font-semibold text-white bg-vintage-rosedark px-3 py-0.5 rounded-full">ระดับมัธยมศึกษาตอนปลาย (ม.4-6)</span>
+                                <h3 class="text-lg sm:text-xl font-heading font-semibold text-vintage-charcoal mt-1">โรงเรียนธาตุนารายณ์วิทยา</h3>
+                                <p class="text-xs text-slate-500">แผนการเรียน วิทยาศาสตร์ - คณิตศาสตร์</p>
+                            </div>
+                            <div class="mt-2 sm:mt-0 bg-white p-3 rounded-xl border-2 border-vintage-rose/30 text-center sm:text-right shadow-sm">
+                                <span class="text-xs text-slate-500 block">GPAX (5 เทอม)</span>
+                                <span class="text-2xl font-bold text-vintage-rosedark">3.19</span>
+                            </div>
+                        </div>
+                        <p class="text-xs text-slate-600 mt-3 font-serif-thai">
+                            *สังกัดสำนักงานเขตพื้นที่การศึกษามัธยมศึกษาสกลนคร ตำบลธาตุเชิงชุม อำเภอเมืองสกลนคร จังหวัดสกลนคร
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="transcript" class="scroll-mt-20">
+            <div class="vintage-card rounded-3xl p-6 sm:p-8 space-y-6">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-vintage-border pb-4">
+                    <div>
+                        <div class="inline-flex items-center space-x-2 bg-vintage-softpink text-vintage-rosedark px-3 py-1 rounded-full text-xs font-semibold">
+                            <i class="fa-solid fa-file-invoice"></i>
+                            <span>ระเบียนแสดงผลการเรียน (ปพ.1)</span>
+                        </div>
+                        <h2 class="text-2xl font-heading font-semibold text-vintage-charcoal mt-1">
+                            สรุปผลการเรียนแยกตามกลุ่มสาระวิชา
+                        </h2>
+                    </div>
+                    <div class="text-xs text-slate-500 bg-white p-2.5 rounded-xl border border-vintage-border">
+                        <span class="font-semibold text-vintage-charcoal">หน่วยกิตเรียนรวม:</span> 67.0 หน่วยกิต <br>
+                        <span class="font-semibold text-vintage-rosedark">ผลการเรียนเฉลี่ยรวม (GPAX):</span> 3.19
+                    </div>
+                </div>
+
+                <!-- Subject Group Grid from PDF Transcript -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-xs">
+                    
+                    <!-- Subject Item -->
+                    <div class="bg-white p-4 rounded-2xl border border-vintage-border space-y-2 shadow-sm hover:border-vintage-rose transition">
+                        <div class="flex items-center justify-between">
+                            <span class="font-heading font-medium text-slate-800 text-sm"><i class="fa-solid fa-book-open text-vintage-rose mr-1"></i> ภาษาไทย</span>
+                            <span class="bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded font-bold">GPA 3.87</span>
+                        </div>
+                        <div class="text-slate-500 text-[11px] flex justify-between border-t border-dashed pt-1">
+                            <span>หน่วยกิตเรียน:</span>
+                            <span class="font-semibold text-slate-700">4.0 หน่วยกิต</span>
+                        </div>
+                    </div>
+
+                    <!-- Subject Item -->
+                    <div class="bg-white p-4 rounded-2xl border border-vintage-border space-y-2 shadow-sm hover:border-vintage-rose transition">
+                        <div class="flex items-center justify-between">
+                            <span class="font-heading font-medium text-slate-800 text-sm"><i class="fa-solid fa-calculator text-vintage-sagedark mr-1"></i> คณิตศาสตร์</span>
+                            <span class="bg-amber-100 text-amber-800 px-2 py-0.5 rounded font-bold">GPA 2.32</span>
+                        </div>
+                        <div class="text-slate-500 text-[11px] flex justify-between border-t border-dashed pt-1">
+                            <span>หน่วยกิตเรียน:</span>
+                            <span class="font-semibold text-slate-700">10.0 หน่วยกิต</span>
+                        </div>
+                    </div>
+
+                    <!-- Subject Item -->
+                    <div class="bg-white p-4 rounded-2xl border border-vintage-border space-y-2 shadow-sm hover:border-vintage-rose transition">
+                        <div class="flex items-center justify-between">
+                            <span class="font-heading font-medium text-slate-800 text-sm"><i class="fa-solid fa-flask text-blue-500 mr-1"></i> วิทยาศาสตร์ & เทคโนโลยี</span>
+                            <span class="bg-blue-100 text-blue-800 px-2 py-0.5 rounded font-bold">GPA 2.90</span>
+                        </div>
+                        <div class="text-slate-500 text-[11px] flex justify-between border-t border-dashed pt-1">
+                            <span>หน่วยกิตเรียน:</span>
+                            <span class="font-semibold text-slate-700">23.5 หน่วยกิต</span>
+                        </div>
+                    </div>
+
+                    <!-- Subject Item -->
+                    <div class="bg-white p-4 rounded-2xl border border-vintage-border space-y-2 shadow-sm hover:border-vintage-rose transition">
+                        <div class="flex items-center justify-between">
+                            <span class="font-heading font-medium text-slate-800 text-sm"><i class="fa-solid fa-earth-americas text-purple-500 mr-1"></i> สังคมศึกษา ศาสนาฯ</span>
+                            <span class="bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded font-bold">GPA 3.78</span>
+                        </div>
+                        <div class="text-slate-500 text-[11px] flex justify-between border-t border-dashed pt-1">
+                            <span>หน่วยกิตเรียน:</span>
+                            <span class="font-semibold text-slate-700">10.5 หน่วยกิต</span>
+                        </div>
+                    </div>
+
+                    <!-- Subject Item -->
+                    <div class="bg-white p-4 rounded-2xl border border-vintage-border space-y-2 shadow-sm hover:border-vintage-rose transition">
+                        <div class="flex items-center justify-between">
+                            <span class="font-heading font-medium text-slate-800 text-sm"><i class="fa-solid fa-volleyball text-pink-500 mr-1"></i> สุขศึกษา & พลศึกษา</span>
+                            <span class="bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded font-bold">GPA 4.00</span>
+                        </div>
+                        <div class="text-slate-500 text-[11px] flex justify-between border-t border-dashed pt-1">
+                            <span>หน่วยกิตเรียน:</span>
+                            <span class="font-semibold text-slate-700">2.0 หน่วยกิต</span>
+                        </div>
+                    </div>
+
+                    <!-- Subject Item -->
+                    <div class="bg-white p-4 rounded-2xl border border-vintage-border space-y-2 shadow-sm hover:border-vintage-rose transition">
+                        <div class="flex items-center justify-between">
+                            <span class="font-heading font-medium text-slate-800 text-sm"><i class="fa-solid fa-palette text-amber-500 mr-1"></i> ศิลปะ</span>
+                            <span class="bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded font-bold">GPA 4.00</span>
+                        </div>
+                        <div class="text-slate-500 text-[11px] flex justify-between border-t border-dashed pt-1">
+                            <span>หน่วยกิตเรียน:</span>
+                            <span class="font-semibold text-slate-700">2.0 หน่วยกิต</span>
+                        </div>
+                    </div>
+
+                    <!-- Subject Item -->
+                    <div class="bg-white p-4 rounded-2xl border border-vintage-border space-y-2 shadow-sm hover:border-vintage-rose transition">
+                        <div class="flex items-center justify-between">
+                            <span class="font-heading font-medium text-slate-800 text-sm"><i class="fa-solid fa-briefcase text-slate-600 mr-1"></i> การงานอาชีพ</span>
+                            <span class="bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded font-bold">GPA 4.00</span>
+                        </div>
+                        <div class="text-slate-500 text-[11px] flex justify-between border-t border-dashed pt-1">
+                            <span>หน่วยกิตเรียน:</span>
+                            <span class="font-semibold text-slate-700">1.0 หน่วยกิต</span>
+                        </div>
+                    </div>
+
+                    <!-- Subject Item -->
+                    <div class="bg-white p-4 rounded-2xl border border-vintage-border space-y-2 shadow-sm hover:border-vintage-rose transition">
+                        <div class="flex items-center justify-between">
+                            <span class="font-heading font-medium text-slate-800 text-sm"><i class="fa-solid fa-language text-indigo-500 mr-1"></i> ภาษาต่างประเทศ</span>
+                            <span class="bg-blue-100 text-blue-800 px-2 py-0.5 rounded font-bold">GPA 3.35</span>
+                        </div>
+                        <div class="text-slate-500 text-[11px] flex justify-between border-t border-dashed pt-1">
+                            <span>หน่วยกิตเรียน:</span>
+                            <span class="font-semibold text-slate-700">12.0 หน่วยกิต</span>
+                        </div>
+                    </div>
+
+                    <!-- Subject Item -->
+                    <div class="bg-white p-4 rounded-2xl border border-vintage-border space-y-2 shadow-sm hover:border-vintage-rose transition">
+                        <div class="flex items-center justify-between">
+                            <span class="font-heading font-medium text-slate-800 text-sm"><i class="fa-solid fa-magnifying-glass text-teal-600 mr-1"></i> การศึกษาค้นคว้าด้วยตนเอง</span>
+                            <span class="bg-blue-100 text-blue-800 px-2 py-0.5 rounded font-bold">GPA 3.50</span>
+                        </div>
+                        <div class="text-slate-500 text-[11px] flex justify-between border-t border-dashed pt-1">
+                            <span>หน่วยกิตเรียน:</span>
+                            <span class="font-semibold text-slate-700">2.0 หน่วยกิต</span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Non-academic evaluation status -->
+                <div class="bg-vintage-paper p-4 rounded-2xl border border-vintage-border flex flex-wrap justify-between items-center text-xs gap-2">
+                    <div class="flex items-center space-x-2">
+                        <i class="fa-solid fa-circle-check text-emerald-600 text-base"></i>
+                        <span>การอ่าน คิดวิเคราะห์ และเขียน: <strong class="text-emerald-700">ผ่านเกณฑ์ (ผ)</strong></span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fa-solid fa-circle-check text-emerald-600 text-base"></i>
+                        <span>คุณลักษณะอันพึงประสงค์: <strong class="text-emerald-700">ผ่านเกณฑ์ (ผ)</strong></span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fa-solid fa-circle-check text-emerald-600 text-base"></i>
+                        <span>กิจกรรมพัฒนาผู้เรียน: <strong class="text-emerald-700">ผ่านเกณฑ์ (ผ)</strong></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="activities" class="scroll-mt-20">
+            <div class="text-center mb-8">
+                <span class="text-xs font-semibold text-vintage-rosedark uppercase tracking-widest bg-vintage-softpink px-3 py-1 rounded-full border border-vintage-rose/20">Activities & Certificates</span>
+                <h2 class="text-2xl sm:text-3xl font-heading font-semibold text-vintage-charcoal mt-2">กิจกรรมและผลงานที่ภาคภูมิใจ</h2>
+            </div>
+
+            <!-- Activity Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- Act Card 1 -->
+                <div class="vintage-card rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition flex flex-col">
+                    <div class="h-44 bg-slate-100 relative">
+                        <img src="https://placehold.co/600x400/ffe5ec/be5a67?text=Badminton+Activity" alt="แบดมินตัน" class="w-full h-full object-cover">
+                        <span class="absolute top-2 right-2 bg-vintage-rose text-white text-[10px] px-2.5 py-0.5 rounded-full font-medium">กีฬา & สุขภาพ</span>
+                    </div>
+                    <div class="p-4 flex-1 flex flex-col justify-between space-y-2">
+                        <div>
+                            <h3 class="font-heading font-semibold text-vintage-charcoal text-base">ตัวแทนแข่งขันแบดมินตัน</h3>
+                            <p class="text-xs text-slate-600 mt-1 leading-relaxed">
+                                ฝึกซ้อมและเข้าร่วมการแข่งขันแบดมินตัน สร้างวินัยในตนเอง การทำงานเป็นทีม สปิริตนักกีฬา และการดูแลสุขภาพ
+                            </p>
+                        </div>
+                        <span class="text-[11px] text-vintage-rosedark font-medium"><i class="fa-solid fa-trophy mr-1"></i> ความสามารถพิเศษ</span>
+                    </div>
+                </div>
+
+                <!-- Act Card 2 -->
+                <div class="vintage-card rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition flex flex-col">
+                    <div class="h-44 bg-slate-100 relative">
+                        <img src="https://placehold.co/600x400/84a59d/ffffff?text=Science+Academic+Camp" alt="วิชาการ" class="w-full h-full object-cover">
+                        <span class="absolute top-2 right-2 bg-vintage-sagedark text-white text-[10px] px-2.5 py-0.5 rounded-full font-medium">วิชาการ</span>
+                    </div>
+                    <div class="p-4 flex-1 flex flex-col justify-between space-y-2">
+                        <div>
+                            <h3 class="font-heading font-semibold text-vintage-charcoal text-base">กิจกรรมการเรียนรู้สายวิทย์-คณิต</h3>
+                            <p class="text-xs text-slate-600 mt-1 leading-relaxed">
+                                เข้าร่วมการทดลองทางวิทยาศาสตร์และคณิตศาสตร์ของโรงเรียนธาตุนารายณ์วิทยา ฝึกทักษะการวิเคราะห์และแก้ไขปัญหา
+                            </p>
+                        </div>
+                        <span class="text-[11px] text-vintage-sagedark font-medium"><i class="fa-solid fa-flask mr-1"></i> วิทยาศาสตร์-คณิตศาสตร์</span>
+                    </div>
+                </div>
+
+                <!-- Act Card 3 -->
+                <div class="vintage-card rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition flex flex-col">
+                    <div class="h-44 bg-slate-100 relative">
+                        <img src="https://placehold.co/600x400/ffe5ec/be5a67?text=School+Volunteering" alt="จิตอาสา" class="w-full h-full object-cover">
+                        <span class="absolute top-2 right-2 bg-amber-600 text-white text-[10px] px-2.5 py-0.5 rounded-full font-medium">จิตอาสา</span>
+                    </div>
+                    <div class="p-4 flex-1 flex flex-col justify-between space-y-2">
+                        <div>
+                            <h3 class="font-heading font-semibold text-vintage-charcoal text-base">กิจกรรมจิตอาสา & พัฒนาโรงเรียน</h3>
+                            <p class="text-xs text-slate-600 mt-1 leading-relaxed">
+                                ร่วมกิจกรรมบำเพ็ญประโยชน์เพื่อสังคมและส่วนร่วม ช่วยเหลือครูอาจารย์และเพื่อนๆ ด้วยอุปนิสัยชอบแคร์ผู้อื่น
+                            </p>
+                        </div>
+                        <span class="text-[11px] text-amber-700 font-medium"><i class="fa-solid fa-heart mr-1"></i> บำเพ็ญประโยชน์</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-white border-t border-vintage-border mt-16 py-8 text-center no-print">
+        <div class="max-w-6xl mx-auto px-4 space-y-3">
+            <p class="font-heading text-lg font-medium text-vintage-rosedark">
+                "ช้าแต่มั่นใจ ดีกว่าไม่รู้เลย" — ญาณินท์ ดวงดี (แอฟ)
+            </p>
+            <p class="text-xs text-slate-500 font-serif-thai">
+                แฟ้มสะสมผลงาน (Academic Portfolio) | โรงเรียนธาตุนารายณ์วิทยา จังหวัดสกลนคร
+            </p>
+            <div class="flex justify-center items-center space-x-4 text-xs text-slate-600 pt-2">
+                <button onclick="window.print()" class="hover:text-vintage-rose underline"><i class="fa-solid fa-print mr-1"></i> พิมพ์ / บันทึก PDF</button>
+                <span>•</span>
+                <button onclick="openGithubModal()" class="hover:text-vintage-rose underline"><i class="fa-brands fa-github mr-1"></i> วิธีกดขึ้น GitHub Pages</button>
+            </div>
+        </div>
+    </footer>
+
+    <div id="github-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-xl w-full p-6 space-y-4 shadow-2xl border-2 border-vintage-border relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeGithubModal()" class="absolute top-4 right-4 w-8 h-8 bg-slate-100 hover:bg-slate-200 rounded-full text-slate-600 flex items-center justify-center">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            
+            <div class="flex items-center space-x-3 text-vintage-charcoal border-b border-vintage-border pb-3">
+                <i class="fa-brands fa-github text-3xl text-vintage-charcoal"></i>
+                <div>
+                    <h3 class="font-heading font-semibold text-lg">วิธีนำไฟล์ขึ้น GitHub Pages (ฟรี 100%)</h3>
+                    <p class="text-xs text-slate-500">ขั้นตอนง่ายๆ ในการนำพอร์ตโฟลิโอนี้ขึ้นออนไลน์</p>
+                </div>
+            </div>
+
+            <ol class="list-decimal list-inside space-y-3 text-xs sm:text-sm text-slate-700 leading-relaxed font-serif-thai">
+                <li class="p-3 rounded-2xl bg-vintage-paper border border-vintage-border">
+                    <strong class="text-vintage-charcoal font-heading">บันทึกไฟล์นี้:</strong> ตั้งชื่อไฟล์ว่า <code class="bg-vintage-softpink text-vintage-rosedark px-2 py-0.5 rounded font-mono font-bold">index.html</code>
+                </li>
+                <li class="p-3 rounded-2xl bg-vintage-paper border border-vintage-border">
+                    <strong class="text-vintage-charcoal font-heading">สมัคร/เข้าสู่ระบบ GitHub:</strong>
+                    <p class="text-slate-600 text-xs mt-1">กดปุ่ม <strong class="text-slate-800">"New Repository"</strong> &rarr; ตั้งชื่อ repository เช่น <code class="font-mono bg-white px-1.5 py-0.5 rounded border border-slate-300">academic-portfolio</code> &rarr; เลือกเป็น <strong class="text-slate-800">Public</strong> &rarr; กด <strong class="text-slate-800">Create repository</strong></p>
+                </li>
+                <li class="p-3 rounded-2xl bg-vintage-paper border border-vintage-border">
+                    <strong class="text-vintage-charcoal font-heading">อัปโหลดไฟล์ index.html:</strong>
+                    <p class="text-slate-600 text-xs mt-1">ในหน้า Repository ที่เพิ่งสร้าง กดคลิก <strong class="text-slate-800">"uploading an existing file"</strong> ลากไฟล์ <code class="font-mono text-vintage-rosedark font-bold">index.html</code> ใส่ลงไป แล้วกด <strong class="text-slate-800">Commit changes</strong></p>
+                </li>
+                <li class="p-3 rounded-2xl bg-vintage-paper border border-vintage-border">
+                    <strong class="text-vintage-charcoal font-heading">เปิดใช้งาน GitHub Pages:</strong>
+                    <p class="text-slate-600 text-xs mt-1">ไปที่แท็บ <strong class="text-slate-800">Settings</strong> (ด้านบน) &rarr; เมนูซ้ายเลือก <strong class="text-slate-800">Pages</strong> &rarr; ตรงส่วน Source Branch เลือกเป็น <code class="font-mono bg-white px-1 rounded border">main</code> หรือ <code class="font-mono bg-white px-1 rounded border">master</code> &rarr; กด <strong class="text-slate-800">Save</strong></p>
+                </li>
+                <li class="p-3 rounded-2xl bg-emerald-50 border border-emerald-200">
+                    <strong class="text-emerald-800 font-heading"><i class="fa-solid fa-circle-check text-emerald-600 mr-1"></i> เสร็จเรียบร้อย!</strong>
+                    <p class="text-emerald-700 text-xs mt-1">รอประมาณ 1-2 นาที คุณจะได้ URL เว็บไซต์ เช่น <code class="font-mono font-bold text-blue-600">https://yourusername.github.io/academic-portfolio/</code> สำหรับนำไปแนบส่งอาจารย์ได้เลย!</p>
+                </li>
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        // Mobile Navigation Toggle
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        if (mobileBtn && mobileMenu) {
+            mobileBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+        }
+
+        // GitHub Modal Helper Logic
+        function openGithubModal() {
+            const modal = document.getElementById('github-modal');
+            if (modal) modal.classList.remove('hidden');
+        }
+
+        function closeGithubModal() {
+            const modal = document.getElementById('github-modal');
+            if (modal) modal.classList.add('hidden');
+        }
+
+        // Background click modal exit
+        window.onclick = function(event) {
+            const githubModal = document.getElementById('github-modal');
+            if (event.target === githubModal) {
+                closeGithubModal();
+            }
+        }
+    </script>
+</body>
+</html>
